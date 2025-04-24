@@ -6,6 +6,8 @@ export const Appcontext = createContext();
 
 const AppProvider = ({ children }) => {
   const transcript = useSpeechRecognition();
+
+  const [triggerOpen, setTriggerOpen] = useState(null);
   const [telling, setTelling] = useState(false);
 
   let question = transcript.transcript;
@@ -25,10 +27,21 @@ const AppProvider = ({ children }) => {
 
   const name = "shre";
   console.log(question);
+  async function getAns(question) {
+    if (question.includes("open google")) {
+     setTriggerOpen("google")
+      return "Opening Google for you.";
+    }
+  
+    if (question.includes("open youtube")) {
+      setTriggerOpen("youtube")
+      return "Opening YouTube for you.";
+    }
 
   const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API });
 
-  async function getAns(question) {
+  
+
     let query = `give answer in two or three line  ${question}`;
 
     const response = await ai.models.generateContent({
@@ -60,6 +73,20 @@ const AppProvider = ({ children }) => {
       return () => clearTimeout(time);
     }
   }, [question]);
+
+
+  useEffect(()=>{
+
+    if(triggerOpen=="google"){
+      window.open("https://www.google.com", "_blank");
+      setTriggerOpen(null);
+    }
+    if (triggerOpen === "youtube") {
+      window.open("https://www.youtube.com", "_blank");
+      setTriggerOpen(null);
+    }
+
+  },[triggerOpen])
 
   return (
     <Appcontext.Provider value={{ telling }}>{children}</Appcontext.Provider>
