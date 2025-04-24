@@ -1,0 +1,71 @@
+.container {
+  margin: 5vh auto;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.container img {
+  width: 16rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-family: cursive;
+  background: linear-gradient(90deg, #ef258a, #0ac8c8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 20px 0;
+  font-weight: 800;
+}
+
+/* Glowing button effect */
+button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgb(254, 251, 251);
+  background-color: #ff69b4;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 60px #ff69b4, 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+  background: #ff69b4;
+  outline: none;
+  
+}
+
+button:hover {
+  background: #0ac88f;
+  box-shadow: 0 0 6px #00ff7f, 0 0 10px #00ff7f, 0 0 20px #00ff7f;
+  transition: all 0.3s ease-in-out;
+  
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    width: 90vw;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  .container img {
+    width: 15rem;
+  }
+}
+.say{
+  height: 8rem;
+  width: 4rem;
+}
